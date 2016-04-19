@@ -5,21 +5,18 @@ public class GameController : MonoBehaviour {
 
     public GameObject brick;
     public GameObject ball;
-    private Rigidbody rbBall;
+    private Rigidbody rbBita;
 
     // Use this for initialization
     public void Start () {
-        //rbBall = ball.GetComponent<Rigidbody>;
         Screen.SetResolution(600, 900, false, 60);
+        GameObject[] bits = GameObject.FindGameObjectsWithTag("Player");
+        GameObject bita = bits[0];
+        rbBita = bita.GetComponent<Rigidbody>();
         fillTheFild();
         setBall();
     }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     void fillTheFild ()
     {
         for (int i=-4; i<5; i++)
@@ -33,7 +30,8 @@ public class GameController : MonoBehaviour {
 
     void setBall()
     {
-        Instantiate(ball, new Vector3(0,-11.98f,0), Quaternion.identity);
+        
+        Instantiate(ball, new Vector3(rbBita.position.x,-11.98f,0), Quaternion.identity);
         
     }
 }

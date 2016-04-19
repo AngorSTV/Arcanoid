@@ -6,7 +6,9 @@ public class Boundary : MonoBehaviour {
     public GameController gc;
     void OnTriggerExit(Collider other)
     {
+        
+        if (other.tag == "Ball") gc.Start();
         Destroy(other.gameObject);
-        if (other.gameObject == ball) gc.Start();
+        
     }
 }
