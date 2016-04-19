@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public float xMax;
     private Rigidbody rb;
     private float carrentY;
-    private float rotation;
 
     void Start()
     {
