@@ -29,9 +29,18 @@ public class Ball : MonoBehaviour {
         }
         if (col.gameObject.tag == "Border")
         {
+            Debug.Log(rb.velocity.y);
+            if (rb.velocity.y > 0)
+            {
+                rb.AddForce(new Vector3(0, 1, 0), ForceMode.VelocityChange);
+            }
+            else
+            {
+                rb.AddForce(new Vector3(0, -1, 0), ForceMode.VelocityChange);
+            }
             rb.velocity = rb.velocity * 1.1f;
             counter++;
-            Debug.Log(counter);
+            //Debug.Log(counter);
             if (counter > 4)
             {
                 counter = 0;
