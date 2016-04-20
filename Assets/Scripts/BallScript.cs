@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class Ball : MonoBehaviour {
+    public GameObject brickObj;
+
     private Rigidbody rb;
     private int counter;
+
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
@@ -24,8 +28,9 @@ public class Ball : MonoBehaviour {
     {
         if (col.gameObject.tag == "Brick")
         {
-            Destroy(col.gameObject);
+            //brickObj.GetComponent<ScriptableObject>().hit = true;
             counter = 0;
+            
         }
         if (col.gameObject.tag == "Border")
         {

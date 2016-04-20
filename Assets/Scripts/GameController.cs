@@ -13,6 +13,12 @@ public class GameController : MonoBehaviour {
         GameObject[] bits = GameObject.FindGameObjectsWithTag("Player");
         GameObject bita = bits[0];
         rbBita = bita.GetComponent<Rigidbody>();
+        GameObject[] bricks = GameObject.FindGameObjectsWithTag("Brick");
+        for(int i=0; i < bricks.Length; i++)
+        {
+            Destroy (bricks[i]);
+        }
+
         fillTheFild();
         setBall();
     }
