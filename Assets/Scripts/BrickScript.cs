@@ -1,24 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Brick : MonoBehaviour {
-
-    public bool hit = false;
-
-    const int MOVE_SPAN = 5;
-    const float SPEED = 2f;
+public class BrickScript : MonoBehaviour {
+    public float tumble;
+    private Rigidbody rb;
+    private BoxCollider bc;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        rb = GetComponent<Rigidbody>();
+        bc = GetComponent<BoxCollider>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (hit)
-        {
-            transform.position = new Vector3(Mathf.PingPong(Time.time, SPEED) * MOVE_SPAN, transform.position.y, 0);
-        }
 	
 	}
+    public void Hit()
+    {
+        bc.isTrigger = true;
+
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        rb.angularVelocity = Random.insideUnitSphere * tumble;
+
+
+
+
+    }
 }

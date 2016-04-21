@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ball : MonoBehaviour {
-    public GameObject brickObj;
-
+public class BallScript : MonoBehaviour {
+  
     private Rigidbody rb;
     private int counter;
 
@@ -28,13 +27,13 @@ public class Ball : MonoBehaviour {
     {
         if (col.gameObject.tag == "Brick")
         {
-            //brickObj.GetComponent<ScriptableObject>().hit = true;
+            col.gameObject.GetComponent<BrickScript>().Hit();
             counter = 0;
             
         }
         if (col.gameObject.tag == "Border")
         {
-            Debug.Log(rb.velocity.y);
+            //доварачиваем угол отражения в сторону движения мяча
             if (rb.velocity.y > 0)
             {
                 rb.AddForce(new Vector3(0, 1, 0), ForceMode.VelocityChange);
@@ -43,9 +42,10 @@ public class Ball : MonoBehaviour {
             {
                 rb.AddForce(new Vector3(0, -1, 0), ForceMode.VelocityChange);
             }
-            rb.velocity = rb.velocity * 1.1f;
+            
+            //ускоряемся от удара об стены
+            rb.velocity = rb.velocity * 1.02f;
             counter++;
-            //Debug.Log(counter);
             if (counter > 4)
             {
                 counter = 0;
