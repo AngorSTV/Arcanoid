@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour {
     {
         for (int i=-4; i<5; i++)
         {
-            for (int k=1; k<10; k++)
+            for (int k=5; k<10; k++)
             {
                 Instantiate(brick, new Vector3 (i*2.1f,k*1.1f,0.0f), Quaternion.identity);
             }

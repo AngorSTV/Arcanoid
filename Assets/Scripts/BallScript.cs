@@ -27,7 +27,7 @@ public class BallScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Brick")
         {
-            col.gameObject.GetComponent<BrickScript>().Hit();
+            col.gameObject.GetComponent<BrickScript>().Hit(rb.velocity.x, rb.velocity.y);
             counter = 0;
             
         }
@@ -46,6 +46,7 @@ public class BallScript : MonoBehaviour {
             //ускоряемся от удара об стены
             rb.velocity = rb.velocity * 1.02f;
             counter++;
+            // при горизонтальном зависании шара между двух стен доворачиваем его к серху
             if (counter > 4)
             {
                 counter = 0;

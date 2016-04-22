@@ -16,13 +16,14 @@ public class BrickScript : MonoBehaviour {
 	void Update () {
 	
 	}
-    public void Hit()
+    public void Hit( float x, float y)
     {
         bc.isTrigger = true;
 
         rb.isKinematic = false;
         rb.useGravity = true;
         rb.angularVelocity = Random.insideUnitSphere * tumble;
+        rb.AddForce(new Vector3(-x,-y,0), ForceMode.Impulse);
 
 
 

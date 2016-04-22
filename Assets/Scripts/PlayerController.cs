@@ -23,6 +23,19 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
+        //для мобильных устройств
+        Touch[] touches = Input.touches;
+        foreach (Touch touch in touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (touch.position.x > 0)
+                    moveHorizontal = 1;
+                if (touch.position.x < 0)
+                    moveHorizontal = -1;
+            }
+        }
+
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
         rb.velocity = movement * speed;
         rb.position = new Vector3(Mathf.Clamp(rb.position.x, xMin, xMax), carrentY, 0.0f);
