@@ -5,6 +5,8 @@ public class GameController : MonoBehaviour {
 
     public GameObject brick;
     public GameObject ball;
+
+    public int score;
     private Rigidbody rbBita;
 
     // Use this for initialization
@@ -22,14 +24,19 @@ public class GameController : MonoBehaviour {
         fillTheFild();
         setBall();
     }
+
+    void Update()
+    {
+        //вывод состояния счёта и колва бит
+    }
 	
     void fillTheFild ()
     {
-        for (int i=-4; i<5; i++)
+        for (int i=-3; i<4; i++)
         {
             for (int k=5; k<10; k++)
             {
-                Instantiate(brick, new Vector3 (i*2.1f,k*1.1f,0.0f), Quaternion.identity);
+                Instantiate(brick, new Vector3 (i*2.6f,k*1.35f,0.0f), Quaternion.identity);
             }
         }
     }

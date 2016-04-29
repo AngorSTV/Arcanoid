@@ -4,7 +4,7 @@ using System.Collections;
 public class BallScript : MonoBehaviour {
   
     private Rigidbody rb;
-    private int counter;
+    private int score;
 
 
     // Use this for initialization
@@ -13,6 +13,9 @@ public class BallScript : MonoBehaviour {
         float speed = Random.Range(3, 4);
         float direct = Random.Range(-2, 2);
         rb.AddForce(new Vector3(direct,speed,0), ForceMode.VelocityChange);
+        GameObject[] gcs = GameObject.FindGameObjectsWithTag("GameController");
+        GameObject gc = gcs[0];
+        score = gc.GetComponent<GameController>().score;
     }
 
     void FixedUpdate()
@@ -28,8 +31,9 @@ public class BallScript : MonoBehaviour {
         if (col.gameObject.tag == "Brick")
         {
             col.gameObject.GetComponent<BrickScript>().Hit(rb.velocity.x, rb.velocity.y);
-            counter = 0;
-            
+            score++;
+            rb.velocity = rb.velocity * 1.05f;
+
         }
         if (col.gameObject.tag == "Border")
         {
@@ -42,20 +46,6 @@ public class BallScript : MonoBehaviour {
             {
                 rb.AddForce(new Vector3(0, -1, 0), ForceMode.VelocityChange);
             }
-            
-            //ускоряемся от удара об стены
-            rb.velocity = rb.velocity * 1.02f;
-            counter++;
-            // при горизонтальном зависании шара между двух стен доворачиваем его к серху
-            if (counter > 4)
-            {
-                counter = 0;
-                rb.AddForce(new Vector3(0, 4, 0), ForceMode.VelocityChange);
-                rb.velocity = rb.velocity * 0.7f;
-            }
         }
-
-
     }
-
-    }
+}

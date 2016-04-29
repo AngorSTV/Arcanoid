@@ -19,7 +19,7 @@ public class BrickScript : MonoBehaviour {
     public void Hit( float x, float y)
     {
         bc.isTrigger = true;
-
+        rb.position = new Vector3(rb.position.x, rb.position.y, -1);
         rb.isKinematic = false;
         rb.useGravity = true;
         rb.angularVelocity = Random.insideUnitSphere * tumble;
